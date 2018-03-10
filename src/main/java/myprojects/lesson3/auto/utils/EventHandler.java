@@ -5,9 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
-/**
- * Created by Администратор on 10.03.2018.
- */
+
 public class EventHandler implements WebDriverEventListener {
     @Override
     public void beforeAlertAccept(WebDriver webDriver) {
@@ -31,6 +29,7 @@ public class EventHandler implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateTo(String s, WebDriver webDriver) {
+        System.out.println("Just before beforeNavigateTo " + s);
 
     }
 
@@ -42,6 +41,7 @@ public class EventHandler implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateBack(WebDriver webDriver) {
+        System.out.println("Just before beforeNavigateBack " + webDriver.getCurrentUrl());
 
     }
 
@@ -52,6 +52,7 @@ public class EventHandler implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateForward(WebDriver webDriver) {
+        System.out.println("Just before beforeNavigateForward " + webDriver.getCurrentUrl());
 
     }
 
@@ -108,16 +109,18 @@ public class EventHandler implements WebDriverEventListener {
 
     @Override
     public void beforeScript(String s, WebDriver webDriver) {
+        System.out.println("Just before beforeScript " + s);
 
     }
 
     @Override
     public void afterScript(String s, WebDriver webDriver) {
+        System.out.println("Inside the afterScript to, Script is " + s);
 
     }
 
     @Override
     public void onException(Throwable throwable, WebDriver webDriver) {
-
+        System.out.println("Error message: " + throwable.getMessage());
     }
 }

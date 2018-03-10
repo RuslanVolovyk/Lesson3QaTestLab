@@ -10,45 +10,41 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by Администратор on 10.03.2018.
- */
+
 public abstract class BaseTest {
 
     public static WebDriver getWebdraiver() {
-        WebDriver driver;
+        WebDriver driver = null;
         String browser = Properties.getBrowser();
         switch (browser) {
             case "firefox":
-                System.setProperty("webdriver.chrome.driver",
-                        System.getProperty("user.dir") + "/drivers/chromedriver.exe");
+                System.setProperty("webdriver.gecko.driver",
+                        System.getProperty("user.dir") + "/drivers/geckodriver.exe");
                 driver = new FirefoxDriver();
-            case "internet explorer":
-                System.setProperty("webdriver.chrome.driver",
-                        System.getProperty("user.dir") + "/drivers/chromedriver.exe");
+            case "iexplore":
+                System.setProperty("webdriver.ie.driver",
+                        System.getProperty("user.dir") + "/drivers/IEDriverServer.exe");
                 driver = new InternetExplorerDriver();
             case "chrome":
-            default:
                 System.setProperty("webdriver.chrome.driver",
                         System.getProperty("user.dir") + "/drivers/chromedriver.exe");
                 driver = new ChromeDriver();
         }
 
-//        driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         return driver;
     }
 
-    public static EventFiringWebDriver getConfigDriver(){
+    public static EventFiringWebDriver getConfigDriver() {
         WebDriver driver = getWebdraiver();
         driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(driver);
         eventFiringWebDriver.register(new EventHandler());
         return eventFiringWebDriver;
     }
 
-    public static void quitDriver(WebDriver driver){
-       driver.quit();
+    public static void quitDriver(WebDriver driver) {
+        driver.quit();
     }
 }
