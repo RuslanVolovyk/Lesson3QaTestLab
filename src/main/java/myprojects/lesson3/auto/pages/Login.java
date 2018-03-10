@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 import myprojects.lesson3.auto.utils.Properties;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 /**
  * Created by Администратор on 10.03.2018.
@@ -12,13 +13,13 @@ import org.openqa.selenium.WebElement;
 public class Login {
     private static final String LOGIN = "webinar.test@gmail.com";
     private static final String PASSWORD = "Xcg7299bnSmMuRLp9ITw";
-    static WebDriver driver;
+    private static EventFiringWebDriver driver;
     private By login = By.id("email");
     private By password = By.id("passwd");
     private By signIn = By.name("submitLogin");
 
 
-    public Login(WebDriver driver) {
+    public Login(EventFiringWebDriver driver) {
         this.driver = driver;
     }
 
