@@ -59,8 +59,15 @@ public class Catalog {
         for (WebElement webElements : elements) {
             categories.add(webElements.getText());
         }
-        System.out.println("List of Category: " + categories.toString() + "\n" +
-                "The size of list category" + categories.size());
+        System.out.println("List of categories: " + "\n" + categories);
+
+        if (categories.contains(category)){
+            System.out.println("test pass");
+
+        }else {
+            System.out.println("test failed");
+        }
+
 
     }
 
